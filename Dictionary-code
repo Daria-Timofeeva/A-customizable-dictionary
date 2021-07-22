@@ -1,0 +1,91 @@
+#Dictionary
+#My first attempt at spanish-english and english-spanish dictionary of primary colours
+#It is possible to find terms, add them, chnage them and delete them from the dictionary
+def addition(dictionary):
+    term = input("What is the term you wish to add? ")
+    if term not in dictionary:
+        definition = input("Now, introduce the definition: ")
+        dictionary[term] = definition
+        print(f"\nThe term {term} has been added to the dictionary.\n Please, be aware that the programm does not create an opposite pair,\n so the dictionary will not find this word by its definition: {definition}")
+def change(dictionary):
+    term = input("Definition to which term would you like to change? ")
+    if term in dictionary:
+        definition = input("Enter new definition: ")
+        dictionary[term] = definition
+        print(f"\nThe term {term} received a new definition.")
+    else:
+        print(f"The term {term} may not exist in the dictionary. Try adding it first.")
+def delete(dictionary):
+    term = input("Which term would you like to delete? ")
+    if term in dictionary:
+        del dictionary[term]
+        print(f"\nThe term {term} has been removed from the dictionary.")
+    else:
+        print(f"\nI am sincerely sorry, but the term {term} does not seem to exist.")    
+sp_en = {"Azul" : "Blue",
+         "Rojo" : "Red",
+         "Amarillo" : "Yellow"}
+en_sp = {"Blue" : "Azul",
+         "Red" : "Rojo",
+         "Yellow" : "Amarillo"}
+choice = None
+while choice != "0":
+    print(
+    """
+    This is a spanish - english translator and visa versa.
+    As a default it has got only primary colour in it.
+    To use it press:
+    0 - to close
+    1 - to find a term
+    2 - to add a term
+    3 - to change a term
+    4 - to delete a term
+    Enjoy the experience!
+    """
+    )
+    choice = input("Your choice is: ")
+#Choices
+    #Exit
+    if choice == "0":
+        print("Have a nice day.")
+    #Search
+    elif choice == "1":
+         term = input ("Which term do you want to check? ")
+         if term in sp_en:
+             definition = sp_en[term]
+             print(f"\n{term} means {definition}")
+         elif term in en_sp:
+             definition = en_sp[term]
+             print(f"\n{term} means {definition}")
+         else:
+             print("I am so sorry, I am not familiar with this term.")
+    #Addition
+    elif choice == "2":             
+        dictionary = input("Into which language do you wish to add a term? Spanish or English ")
+        if dictionary == "Spanish":
+            addition(sp_en)
+        elif dictionary == "English":
+            addition(en_sp)
+        else:
+            print("This language is not supported by this dictionary, please, try either English or Spanish.")
+    #Change
+    elif choice == "3":
+        dictionary = input("Into which language do you wish to add a term? Spanish or English ")
+        if dictionary == "Spanish":
+            change(sp_en)
+        elif dictionary == "English":
+            change(en_sp)
+        else:
+            print("This language is not supported by this dictionary, please, try either English or Spanish.")        
+    #Delete
+    elif choice == "4":
+        dictionary = input("A term from which language would you like to delete? ")
+        if dictionary == "Spanish":
+            delete(sp_en)
+        elif dictionary == "English":
+            delete(en_sp)
+        else:
+            print("This language is not supported by this dictionary, please, try either English or Spanish.")
+    else:
+        print("There seems to be no such function. Please try to type a number from 0 to 4")
+    input("\n\nPress Enter to proceed.")  
